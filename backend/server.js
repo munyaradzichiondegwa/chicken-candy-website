@@ -1,8 +1,11 @@
 // Load environment variables first
-import 'dotenv/config'; // alternative to require('dotenv').config() in ES modules
+import 'dotenv/config';
 
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import connectDB from './config/db.js';
 
 // Import Routes
@@ -11,19 +14,30 @@ import authRoutes from './routes/authRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 
 // Connect to Database
-// Make sure connectDB reads process.env.MONGO_URI inside db.js
 connectDB();
 
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-app.use(express.json()); // To accept JSON data in the body
+app.use(cors());
+app.use(express.json());
 
-// Mount Routes
+// API Routes
 app.use('/api/menu', menuRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+
+// ---------------------
+// Serve React frontend
+// ---------------------
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
+});
 
 // Start server
 const PORT = process.env.PORT || 5001;
