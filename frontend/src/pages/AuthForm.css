@@ -1,0 +1,94 @@
+.auth-container {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-container h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.auth-button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d32f2f;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.auth-button:hover {
+  background-color: #b71c1c;
+}
+
+.auth-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.message, .error {
+  padding: 10px;
+  margin-top: 1rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.message {
+  background-color: #e8f5e9; /* Light green */
+  color: #2e7d32; /* Dark green */
+}
+
+.error {
+  background-color: #ffebee; /* Light red */
+  color: #c62828; /* Dark red */
+}
+
+.redirect-link {
+  margin-top: 1.5rem;
+  color: #555;
+}
+
+.redirect-link a {
+  color: #d32f2f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.redirect-link a:hover {
+  text-decoration: underline;
+}
