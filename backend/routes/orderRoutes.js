@@ -1,9 +1,9 @@
 import express from 'express';
-import { placeOrder } from '../controllers/orderController.js';
+import { placeOrder, getMyOrders } from '../controllers/orderController.js';
 import { protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
-// Any request to this route must first pass through the 'protect' middleware
 router.route('/').post(protect, placeOrder);
+router.route('/myorders').get(protect, getMyOrders); // <-- ADD THIS
 
 export default router;

@@ -1,16 +1,13 @@
-console.log('MONGO_URI:', process.env.MONGO_URI);
-
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config(); // Load environment variables here
 
 const connectDB = async () => {
   try {
+    // The MONGO_URI is already loaded by server.js before this code runs
     const conn = await mongoose.connect(process.env.MONGO_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    // A more specific error message is helpful for debugging
+    console.error(`Error connecting to MongoDB: ${error.message}`);
     process.exit(1);
   }
 };
