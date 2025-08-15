@@ -1,4 +1,4 @@
-// Load environment variables first
+// Load environment variables
 import 'dotenv/config';
 
 import express from 'express';
@@ -18,8 +18,21 @@ connectDB();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// ---------------------
+// CORS Middleware
+// ---------------------
+// Only allow your frontend domain
+const allowedOrigins = [
+  'https://chicken-candy-website.onrender.com',
+  'http://localhost:3000' // optional for local dev
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
+// Body parser
 app.use(express.json());
 
 // API Routes
@@ -39,6 +52,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
 
+// ---------------------
 // Start server
+// ---------------------
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Backend server running on port ${PORT}`));
